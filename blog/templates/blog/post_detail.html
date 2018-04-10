@@ -4,13 +4,16 @@
 
 {% block content %}
     <div class="post">
-        {% if post.published_date %}
+        {% if post.published_date %} {#Comment: if Post has a publish date, it should be instantly published #}
             <div class="date">
                 {{ post.published_date }}
             </div>
+        {% else %}
+        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a> {#Comment: Adds publish button to publish unpublished Posts/drafts #}
         {% endif %}
         {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> {#Comment: Adds the Edit button#}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> {#Comment: Adds the Edit button #}
+        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a> {#Comment: Adds the Delete button #}
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>

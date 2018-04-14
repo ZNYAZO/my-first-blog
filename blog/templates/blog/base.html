@@ -12,6 +12,9 @@
             {% if user.is_authenticated %}
             <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> {#Comment: Adds the "+" symbol for adding new Blog Post#}
             <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a> {#Comment: for displaying draft/unpublished Blog Posts#}
+            <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p> {#Comment:This adds a nice "Hello <username>", and shows "Log out" Button #}
+            {% else %}
+            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> {#Comment:it shows a login button #}
             {% endif %}
             <h1><a href="/">Database Management System</a></h1>
         </div>
